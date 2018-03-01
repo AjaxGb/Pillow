@@ -380,7 +380,7 @@ class PngStream(ChunkStream):
                 # otherwise, we have a byte string with one alpha value
                 # for each palette entry
                 self.im_info["transparency"] = s
-        elif self.im_mode == "L":
+        elif self.im_mode in ("1", "L", "I"):
             self.im_info["transparency"] = i16(s)
         elif self.im_mode == "RGB":
             self.im_info["transparency"] = i16(s), i16(s[2:]), i16(s[4:])
@@ -785,7 +785,7 @@ def _save(im, fp, filename, chunk=putchunk):
                 transparency = max(0, min(255, transparency))
                 alpha = b'\xFF' * transparency + b'\0'
                 chunk(fp, b"tRNS", alpha[:alpha_bytes])
-        elif im.mode == "L":
+        elif im.mode in ("1", "L", "I"):
             transparency = max(0, min(65535, transparency))
             chunk(fp, b"tRNS", o16(transparency))
         elif im.mode == "RGB":
