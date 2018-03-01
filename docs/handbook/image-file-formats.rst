@@ -439,7 +439,7 @@ The :py:meth:`~PIL.Image.Image.open` method sets the following
     For ``P`` images: Either the palette index for full transparent pixels,
     or a byte string with alpha values for each palette entry.
 
-    For ``L`` and ``RGB`` images, the color that represents full transparent
+    For ``1``, ``L``, ``I``, and ``RGB`` images, the color that represents full transparent
     pixels in this image.
 
     This key is omitted if the image is not a transparent palette image.
